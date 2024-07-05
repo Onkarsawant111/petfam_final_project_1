@@ -18,7 +18,7 @@ def register(request):
         else:
             # Print form errors to console for debugging
             print(form.errors)
-            messages.error(request, "Oops! Something went wrong.")
+            messages.success(request, "Oops! Fill the form details correctly")
             return redirect('register')
     else:
         form = Register()

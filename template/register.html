@@ -2,11 +2,46 @@
 
 {% block content %}
 
-<div class="form-container">
-  <form method="post" action="{% url 'register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 style="color: grey; font-family: 'Times New Roman', Times, serif" class="mb-4 mt-5">Register</h1>
+      <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_first_name" style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem" >Name:</label><br>
+          <div class="form-control bg-light text-dark">
+            {{ form.first_name }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_username"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem"  >Username:</label><br>
+          <div class="form-control bg-light text-dark">
+            {{ form.username }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_email"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Email:</label><br>
+          <div class="form-control bg-light text-dark">
+            {{ form.email }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_password1"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Password:</label><br>
+          <div class="form-control bg-light text-dark">
+            {{ form.password1 }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_password2"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Confirm Password:</label><br>
+          <div class="form-control bg-light text-dark">
+            {{ form.password2 }}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 mt-4 w-100">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
