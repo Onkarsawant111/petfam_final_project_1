@@ -1,51 +1,12 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1 style="color: grey; font-family: 'Times New Roman', Times, serif" class="mb-4 mt-5">Register</h1>
-      <form method="POST" action="{% url 'register' %}">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="exampleInputName1" class="mb-2 mt-2"
-            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Name</label>
-          <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp"
-            placeholder="Enter name" name="Name">
-          {% if content.name %}
-          <small class="text-danger">{{ content.name }}</small>
-          {% endif %}
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1" class="mb-2 mt-2"
-            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email" name="Email">
-          {% if content.email %}
-          <small class="text-danger">{{ content.email }}</small>
-          {% endif %}
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputNumber1" class="mb-2 mt-2"
-            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Number</label>
-          <input type="number" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp"
-            placeholder="Enter number" name="Number">
-          {% if content.number %}
-          <small class="text-danger">{{ content.number }}</small>
-          {% endif %}
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1" class="mb-2 mt-4"
-            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="Password">
-          {% if content.password %}
-          <small class="text-danger">{{ content.password }}</small>
-          {% endif %}
-        </div>
-        <button type="submit" class="btn btn-primary mb-2 mt-4 w-100">Sign Up</button>
-      </form>
-    </div>
-  </div>
-</div>
+
+<div class="form-container">
+  <form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
 {% endblock content %}
