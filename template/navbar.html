@@ -18,9 +18,15 @@
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item pe-5">
+                <a class="nav-link fw-bolder" href="{% url 'user_logout' %}">Logout</a>
+            </li>
+            {% else %}
             <li class="nav-item pe-5">
                 <a class="nav-link fw-bolder" href="{% url 'user_login' %}">Login</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -98,6 +104,7 @@
         <ul class="dropdown-menu text-small shadow ms-4" aria-labelledby="dropdownUser2">
             <li><a class="dropdown-item" href="#">MyCart</a></li>
             <li><a class="dropdown-item" href="{% url 'user_login' %}">Login</a></li>
+            <!-- <li><a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a></li> -->
             <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
         </ul>
     </div>
