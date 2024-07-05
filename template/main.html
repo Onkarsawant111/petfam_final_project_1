@@ -90,12 +90,34 @@
             position: absolute;
             right: 5%;
         }
+
+        .login-message {
+            background-color: #f8d7da;
+            /* Red background for error messages */
+            color: #721c24;
+            /* Dark red text color */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            /* Light red border */
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     {% include 'navbar.html' %}
     <div>
+        <!-- error login mssge -->
+        {% if messages %}
+        {% for i in messages %}
+        <div class="alert alert-light m-1 p-1" role="alert">
+            {{i}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- end error mssge -->
         {% block content %}
 
         {% endblock content %}

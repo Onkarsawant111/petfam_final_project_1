@@ -1,7 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-<h1>login</h1>
+<div class="container ">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 style="color: grey; font-family: 'Times New Roman', Times, serif" class="mb-4 mt-5">Login</h1>
+      <form method="post" action="{% url 'user_login' %}"> 
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1" class="mb-2 mt-2" style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Name</label>
+          <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Enter username" name="Username">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1" class="mb-2 mt-4" style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="Password">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 mt-4 w-100">Sign In</button>
+      </form>
+      <div class="mt-2 text-center"><a href="/register/">Don't have an account? Register here</a></div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
-
