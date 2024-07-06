@@ -9,36 +9,36 @@
       <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
         <div class="form-group">
-          <label for="id_first_name" style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem" >Name:</label><br>
-          <div class="form-control bg-light text-dark">
-            {{ form.first_name }}
-          </div>
+          <label for="id_first_name"
+            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.3rem">Name:</label><br>
+          <input type="text" name="first_name" maxlength="150" id="id_first_name" class="form-control text-dark w-100 mb-2 mt-2">
         </div>
         <div class="form-group">
-          <label for="id_username"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem"  >Username:</label><br>
-          <div class="form-control bg-light text-dark">
-            {{ form.username }}
-          </div>
+          <label for="id_username"
+            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">Username:</label><br>
+          <input type="text" name="username" maxlength="150" autofocus="" required=""
+            aria-describedby="id_username_helptext" id="id_username" class="form-control text-dark w-100 mb-2 mt-2">
         </div>
         <div class="form-group">
-          <label for="id_email"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Email:</label><br>
-          <div class="form-control bg-light text-dark">
-            {{ form.email }}
-          </div>
+          <label for="id_email"
+            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem ">Email:</label><br>
+          <input type="email" name="email" maxlength="254" required="" id="id_email"
+            class="form-control text-dark w-100 mb-2 mt-2">
         </div>
         <div class="form-group">
-          <label for="id_password1"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Password:</label><br>
-          <div class="form-control bg-light text-dark">
-            {{ form.password1 }}
-          </div>
+          <label for="id_password1"
+            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">Password:</label><br>
+          <input type="password" name="password1" autocomplete="new-password" required=""
+            aria-describedby="id_password1_helptext" id="id_password1" class="form-control text-dark w-100 mb-2 mt-2">
         </div>
         <div class="form-group">
-          <label for="id_password2"  style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem" >Confirm Password:</label><br>
-          <div class="form-control bg-light text-dark">
-            {{ form.password2 }}
-          </div>
+          <label for="id_password2"
+            style="color: grey; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem">Confirm
+            Password:</label><br>
+          <input type="password" name="password2" autocomplete="new-password" required=""
+            aria-describedby="id_password2_helptext" id="id_password2" class="form-control text-dark w-100 mb-2 mt-2">
         </div>
-        <button type="submit" class="btn btn-primary mb-2 mt-4 w-100">Submit</button>
+        <button type="submit" class="btn btn-primary mb-2 mt-4 w-100">Sign Up</button>
       </form>
     </div>
   </div>

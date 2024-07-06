@@ -17,12 +17,12 @@ def register(request):
             return redirect('home')
         else:
             # Print form errors to console for debugging
-            print(form.errors)
-            messages.success(request, "Oops! Fill the form details correctly")
+            errors = form.errors
+            messages.success(request, errors)
             return redirect('register')
     else:
         form = Register()
-    return render(request, 'register.html', {'form': form})
+        return render(request, 'register.html', {'form': form})
 
 def user_login(request):
     if request.method == "POST":
@@ -34,7 +34,7 @@ def user_login(request):
             messages.success(request,("You have been logged in successfully!"))
             return redirect('home')
         else:
-            messages.success(request, ("There was an error, please try again!")) 
+            messages.success(request, ("Check the login credentials & Please try again!")) 
             return redirect('user_login')
     else:
         return render(request, 'login.html')
