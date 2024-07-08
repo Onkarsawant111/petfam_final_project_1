@@ -31,8 +31,9 @@
             transform: translateX(0);
             /* Slide into viewport */
         }
+        /* sidebar end */
 
-        /* Toggle button styles */
+        /* home page sidebar Toggle button */
         #sidebarToggleBtn {
             position: fixed;
             top: 10px;
@@ -40,7 +41,9 @@
             z-index: 1100;
             cursor: pointer;
         }
+        /* toggle end */
 
+        /* home page main image text */
         .carousel-caption {
             position: absolute;
             top: 45%;
@@ -62,7 +65,9 @@
         .carousel-caption p {
             font-size: 1.8rem;
         }
-
+        /* home main image end */
+        
+        /* home page categories section */
         .categories-container {
             display: flex;
             justify-content: space-between;
@@ -90,7 +95,9 @@
             position: absolute;
             right: 5%;
         }
+        /* categories end */
 
+        /* login page */
         .login-message {
             background-color: #f8d7da;
             /* Red background for error messages */
@@ -103,7 +110,26 @@
             border-radius: 5px;
             text-align: center;
         }
+        /* login end */
 
+        /* home page main image transition */
+        .carousel-item {
+            transition: opacity 0.1s ease-out;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item-next,
+        .carousel-item-prev {
+            opacity: 0;
+        }
+
+        .carousel-inner {
+            overflow: hidden;
+        }
+        /* home page main image end */
     </style>
 </head>
 
