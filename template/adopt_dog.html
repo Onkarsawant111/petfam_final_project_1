@@ -1,4 +1,75 @@
 {% extends 'main.html' %}
+
 {% block content %}
-<h1>dog</h1>
+
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .adopt-dog-main-para {
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .adopt-dog-para {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-text {
+        font-size: 16px;
+    }
+    
+</style>
+
+<div class="container">
+    <p class="adopt-dog-main-para">For adoption inquiries, please contact us at onkarsawant111@gmail.com.</p>
+    <p class="adopt-dog-para">Our team will get in touch with you as soon as possible.
+    <p>
+
+    <div class="categories-container">
+        {% for i in dogs %}
+        <div class="card">
+            <img src="/media/{{ i.dogimg }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.dogname }}</h5>
+                <p class="card-text">{{ i.dogdesc }}</p>
+                <a href="#" class="btn btn-primary w-100" id="btn-primary">Adopt</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock content %}
