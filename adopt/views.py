@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Adoptdogpics
 from .models import Adoptcatpics
-from .models import Adoptbirdpics
+from .models import Adoptbirdpics   
 from .models import Adoptsmallpetpics
 
 # Create your views here.

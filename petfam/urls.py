@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls'), name='home'),
     path('', include('register.urls')),  
-    path('adopt/', include('adopt.urls'))  
+    path('adopt/', include('adopt.urls')),
+    path('', include('products.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #global url for images in media folder
