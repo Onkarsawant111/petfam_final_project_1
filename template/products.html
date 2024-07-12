@@ -1,4 +1,135 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>hello</h1>
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .adopt-dog-main-para {
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .adopt-dog-para {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-text {
+        font-size: 16px;
+    }
+</style>
+
+<div class="container">
+    <div class="categories-container">
+        {% if dog_products %}
+        {% for i in dog_products %}
+        <div class="card">
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.name }}</h3>
+                <p class="card-text">
+                    {{ i.price }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg>
+                </p>
+                <button class="btn btn-primary w-100" id="btn-primary" type="button" value="{{i.id}}">ADD TO
+                    CART</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% elif cat_products %}
+        {% for i in cat_products %}
+        <div class="card">
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.name }}</h3>
+                <p class="card-text">
+                    {{ i.price }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg>
+                </p>
+                <button class="btn btn-primary w-100" id="btn-primary" type="button" value="{{i.id}}">ADD TO
+                    CART</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% elif bird_products %}
+        {% for i in bird_products %}
+        <div class="card">
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.name }}</h3>
+                <p class="card-text">
+                    {{ i.price }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg>
+                </p>
+                <button class="btn btn-primary w-100" id="btn-primary" type="button" value="{{i.id}}">ADD TO
+                    CART</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% elif smallpet_products %}
+        {% for i in smallpet_products %}
+        <div class="card">
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.name }}</h3>
+                <p class="card-text">
+                    {{ i.price }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg>
+                </p>
+                <button class="btn btn-primary w-100" id="btn-primary" type="button" value="{{i.id}}">ADD TO
+                    CART</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
 {% endblock content %}

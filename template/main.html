@@ -31,6 +31,7 @@
             transform: translateX(0);
             /* Slide into viewport */
         }
+
         /* sidebar end */
 
         /* home page sidebar Toggle button */
@@ -41,6 +42,7 @@
             z-index: 1100;
             cursor: pointer;
         }
+
         /* toggle end */
 
         /* home page main image text */
@@ -65,8 +67,9 @@
         .carousel-caption p {
             font-size: 1.8rem;
         }
+
         /* home main image end */
-        
+
         /* home page categories section */
         .categories-container {
             display: flex;
@@ -95,6 +98,7 @@
             position: absolute;
             right: 5%;
         }
+
         /* categories end */
 
         /* login page */
@@ -110,6 +114,7 @@
             border-radius: 5px;
             text-align: center;
         }
+
         /* login end */
 
         /* home page main image transition */
@@ -129,6 +134,7 @@
         .carousel-inner {
             overflow: hidden;
         }
+
         /* home page main image end */
     </style>
 </head>
@@ -172,6 +178,31 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jquery for adding product to cart -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- script to send data from products page to add cart page -->
+    <!-- we use ajax method coz you dont need to refresh the page to send the data from one page to another. Once you click the button you will transfer the data -->
+    <script>
+        $(document).on('click', '#btn-primary', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cartadd' %}",
+                data: {
+                    product_id: $('#btn-primary').val(),
+                    product_id: $(this).val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.log(json)
+                },
+                error: function (xhr, errmsg, err) {
+
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
