@@ -179,10 +179,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- jquery for adding product to cart -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- script to send data from products page to add cart page -->
     <!-- we use ajax method coz you dont need to refresh the page to send the data from one page to another. Once you click the button you will transfer the data -->
-    <script>
+    <script>                   // this script is for 'products.html' page button(add to cart)
         $(document).on('click', '#btn-primary', function (e) {
             e.preventDefault();
             $.ajax({
@@ -197,11 +198,38 @@
                 success: function (json) {
                     console.log(json)
                     document.getElementById('cart_quantity').innerHTML = json.qty // update cart quantity in navbar logo as you press add to cart button
+                    location.reload();
                 },
                 error: function (xhr, errmsg, err) {
 
                 }
             })
+        })
+    </script>
+    <script>              // this script is for 'cart_summary.html' page button(delete product)
+        $(document).on('click', '.delete-product', function (e) {
+            e.preventDefault();
+            // grab the product id
+            //var productid = $(this).data('index');
+
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cartdelete' %}",
+                data: {
+                    product_id: $(this).data('index'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    //console.log(json)
+                    //document.getElementById("cart_quantity").textContent = json.qty
+                    location.reload();
+                },
+
+                error: function (xhr, errmsg, err) {
+
+                }
+            });
         })
     </script>
 </body>

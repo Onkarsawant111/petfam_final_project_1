@@ -21,7 +21,7 @@ class Cart():
         else:
             self.cart[product_id] = {'price': str(product.price)}
         # modify the session
-        self.session.modified = True
+        self.session.modified = True #saving session after modifying it
 
     def __len__(self): # It filters to get the length of cart i.e total no of product present in cart and siplay it on cart logo navbar
         return len(self.cart)
@@ -30,6 +30,15 @@ class Cart():
         product_ids = self.cart.keys() #get id from cart
         products = Products.objects.filter(id__in=product_ids)  # use id to look for products in Product models
         return products
+    
+    def delete(self, product): #delete product from 'cart_summary' page
+        product_id = str(product)
+        # delete product from dictionary/cart in cookie 
+        if product_id in self.cart:
+            del self.cart[product_id]
+        
+        self.session.modified = True
+
 
 
 

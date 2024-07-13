@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .cart import Cart
 from products.models import Products
+from django.contrib import messages
 # once product data sent from products page to cartadd page we can send response to confirm success thus add jsonresponse:
 from django.http import JsonResponse 
 
@@ -30,11 +31,19 @@ def cartadd(request):
 
             # get cart quantity to add in cart logo in navbar, above code is commented as we dont require json ressponse of product id and name in console
             cart_quantity = cart.__len__()
+            messages.success(request, "Hooray! 🎉 You've successfully added the product to your cart. Happy shopping!")
             response = JsonResponse({'qty': cart_quantity, 'product name': product.name})
             return response
 
 def cartdelete(request):
-    return render(request, 'cartdelete.hmtl')
+    cart = Cart(request)
+    if request.POST.get('action') == "post":
+        # getting data from ajax request in 'main.html'
+        product_id = int(request.POST.get('product_id'))
+        # call function in Cart class
+        cart.delete(product=product_id)
+        response = JsonResponse({'product': product_id})
+        return response
 
 def cartupdate(request):
     return render(request, 'cartupdate.hmtl')
