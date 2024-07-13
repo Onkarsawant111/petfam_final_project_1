@@ -196,6 +196,7 @@
                 },
                 success: function (json) {
                     console.log(json)
+                    document.getElementById('cart_quantity').innerHTML = json.qty // update cart quantity in navbar logo as you press add to cart button
                 },
                 error: function (xhr, errmsg, err) {
 

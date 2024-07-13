@@ -1,0 +1,134 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .adopt-dog-main-para {
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .adopt-dog-para {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-text {
+        font-size: 16px;
+    }
+
+    /* Style for the container */
+    .categories-container-message {
+        text-align: center;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        max-width: 400px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for the message content */
+    .message-content {
+        padding: 20px;
+    }
+
+    /* Style for the heading */
+    .message-content h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Style for the paragraph */
+    .message-content p {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    /* Style for the 'Continue Shopping' button */
+    .btn-shop-now {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-shop-now:hover {
+        background-color: #a5ada6;
+    }
+</style>
+
+
+</style>
+
+<div class="container">
+    <div class="categories-container">
+        {% if cart_products %}
+        {% for i in cart_products %}
+        <div class="card">
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.name }}</h3>
+                <p class="card-text">
+                    {{ i.price }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg>
+                </p>
+                <button class="btn btn-primary w-100" type="button">Payment</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="categories-container-message">
+            <div class="message-content">
+                <h2>Your Cart is Empty</h2>
+                <p>It looks like you haven't added anything to your cart yet.</p>
+                <a href="{% url 'dog_products' %}" class="btn-shop-now">Continue Shopping</a>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% endblock content %}

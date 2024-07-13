@@ -6,7 +6,9 @@ from django.http import JsonResponse
 
 # Create your views here.
 def cart_summary(request):
-    return render(request, 'cart.html')
+    cart = Cart(request) 
+    cart_products = cart.get_prods # call the function of 'cart.py' 
+    return render(request, 'cart_summary.html', {'cart_products':cart_products})
 
 def cartadd(request):
     # first confirm if user is login or not or is he superuser:
@@ -21,9 +23,14 @@ def cartadd(request):
             # now add this product into session that we created above. For adding this product into session we need to create add function in 'cart.py'
             cart.add(product = product)
             # return response after succesful addition of product into session
-            response = JsonResponse({
-                'product id': product.id,
-                'product name': product.name})
+            # response = JsonResponse({
+            #     'product id': product.id,
+            #     'product name': product.name})
+            # return response
+
+            # get cart quantity to add in cart logo in navbar, above code is commented as we dont require json ressponse of product id and name in console
+            cart_quantity = cart.__len__()
+            response = JsonResponse({'qty': cart_quantity, 'product name': product.name})
             return response
 
 def cartdelete(request):

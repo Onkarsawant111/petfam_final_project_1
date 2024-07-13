@@ -7,7 +7,7 @@ from .models import Adoptsmallpetpics
 # Create your views here.
 def dog(request):
     dog_pics = Adoptdogpics.objects.all()
-    return render(request, 'adopt_dog.html', {'dogs':dog_pics})
+    return render(request, 'adopt_dog.html', 'home.html', {'dogs':dog_pics})
 
 def cat(request):
     cat_pics = Adoptcatpics.objects.all()
