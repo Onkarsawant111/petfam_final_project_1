@@ -34,16 +34,20 @@ def cartadd(request):
             messages.success(request, "Hooray! 🎉 You've successfully added the product to your cart. Happy shopping!")
             response = JsonResponse({'qty': cart_quantity, 'product name': product.name})
             return response
+    else:
+        messages.warning(request, "You need to be logged in to add items to your cart.")
+        return JsonResponse({'error': 'User not authenticated'}, status=403)
+
 
 def cartdelete(request):
     cart = Cart(request)
     if request.POST.get('action') == "post":
-        # getting data from ajax request in 'main.html'
+        # getting data from ajax request present in 'main.html'
         product_id = int(request.POST.get('product_id'))
         # call function in Cart class
         cart.delete(product=product_id)
         response = JsonResponse({'product': product_id})
         return response
 
-def cartupdate(request):
-    return render(request, 'cartupdate.hmtl')
+# def cartupdate(request):
+#     return render(request, 'cartupdate.hmtl')

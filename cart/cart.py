@@ -23,7 +23,7 @@ class Cart():
         # modify the session
         self.session.modified = True #saving session after modifying it
 
-    def __len__(self): # It filters to get the length of cart i.e total no of product present in cart and siplay it on cart logo navbar
+    def __len__(self): # It filters to get the length of cart i.e total no of product present in cart and display it on cart logo navbar
         return len(self.cart)
     
     def get_prods(self): # it shows what is it inside cart that we got from above add()

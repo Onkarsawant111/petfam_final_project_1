@@ -70,7 +70,7 @@
 
         /* home main image end */
 
-        /* home page categories section */
+        /* home page pet categories section */
         .categories-container {
             display: flex;
             justify-content: space-between;
@@ -85,18 +85,6 @@
         .categories-container .card img {
             width: 100%;
             height: 250px;
-        }
-
-        .card-button-div #btn-primary {
-            width: 30%;
-            position: absolute;
-            left: 5%;
-        }
-
-        .card-button-div #btn-primary1 {
-            width: 30%;
-            position: absolute;
-            right: 5%;
         }
 
         /* categories end */
@@ -178,7 +166,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- jquery for adding product to cart -->
+
+    <!-- jquery for adding product to cart 'ajax request'-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- script to send data from products page to add cart page -->
@@ -199,6 +188,7 @@
                     console.log(json)
                     document.getElementById('cart_quantity').innerHTML = json.qty // update cart quantity in navbar logo as you press add to cart button
                     location.reload();
+                    // this function reload the webpage once we click button as we need to show the success message below nvabar. Ajax does not need to refresh the page to pass the request so we use this function for reloading.
                 },
                 error: function (xhr, errmsg, err) {
 
@@ -209,25 +199,21 @@
     <script>              // this script is for 'cart_summary.html' page button(delete product)
         $(document).on('click', '.delete-product', function (e) {
             e.preventDefault();
-            // grab the product id
-            //var productid = $(this).data('index');
-
             $.ajax({
                 type: 'POST',
                 url: "{% url 'cartdelete' %}",
                 data: {
-                    product_id: $(this).data('index'),
+                    product_id: $(this).data('index'), //index is a value of delete button i.e. data-index='{{i.id}}' in car_summary.html file
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     action: 'post'
                 },
                 success: function (json) {
-                    //console.log(json)
-                    //document.getElementById("cart_quantity").textContent = json.qty
                     location.reload();
                 },
 
                 error: function (xhr, errmsg, err) {
-
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.error : 'An error occurred. Please try again.';
+                    $('#error-message').text(errorMessage).show(); // Assuming there's an element with id 'error-message'
                 }
             });
         })
