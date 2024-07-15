@@ -188,10 +188,12 @@
                     console.log(json)
                     document.getElementById('cart_quantity').innerHTML = json.qty // update cart quantity in navbar logo as you press add to cart button
                     location.reload();
-                    // this function reload the webpage once we click button as we need to show the success message below nvabar. Ajax does not need to refresh the page to pass the request so we use this function for reloading.
+                    // this function reload the webpage once we click button as we need to show the success message below navbar. Ajax does not need to refresh the page to pass the request so we use this function for reloading.
                 },
                 error: function (xhr, errmsg, err) {
-
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.error : 'An error occurred. Please try again.';
+                    $('').text(errorMessage).show(); // Show the error message in the specified element
+                    location.reload();
                 }
             })
         })
@@ -212,8 +214,6 @@
                 },
 
                 error: function (xhr, errmsg, err) {
-                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.error : 'An error occurred. Please try again.';
-                    $('#error-message').text(errorMessage).show(); // Assuming there's an element with id 'error-message'
                 }
             });
         })

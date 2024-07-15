@@ -95,14 +95,28 @@
     .btn-shop-now:hover {
         background-color: #a5ada6;
     }
-</style>
 
-
+    .cart-total {
+        text-align: left;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 10px 0;
+        color: #333;
+        background: #e7f3ff;
+        padding: 8px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 </style>
 
 <div class="container">
+    {% if cart_products %}
+    <p class="cart-total">Total Cart Amount: {{ total }} Rs
+    <p>
+        {% endif %}
     <div class="categories-container">
         {% if cart_products %}
+        <br>
         {% for i in cart_products %}
         <div class="card">
             <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
@@ -116,11 +130,13 @@
                             d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                     </svg>
                     <button class="btn btn-primary w-100" type="button">Place Order</button>
-                    <button class="btn btn-outline-danger w-100 mt-1 delete-product" type="button" data-index="{{i.id}}" >Remove Order</button>
+                    <button class="btn btn-outline-danger w-100 mt-1 delete-product" type="button"
+                        data-index="{{i.id}}">Remove Order</button>
                 </p>
             </div>
         </div>
         {% endfor %}
+
         {% else %}
         <div class="categories-container-message">
             <div class="message-content">
@@ -129,7 +145,6 @@
                 <a href="{% url 'dog_products' %}" class="btn-shop-now">Continue Shopping</a>
             </div>
         </div>
-
         {% endif %}
 
         {% endblock content %}

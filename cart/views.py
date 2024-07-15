@@ -8,8 +8,9 @@ from django.http import JsonResponse
 # Create your views here.
 def cart_summary(request):
     cart = Cart(request) 
+    total = cart.cart_total_price() # total price of products in cart
     cart_products = cart.get_prods # call the function of 'cart.py' 
-    return render(request, 'cart_summary.html', {'cart_products':cart_products})
+    return render(request, 'cart_summary.html', {'cart_products':cart_products, 'total': total})
 
 def cartadd(request):
     # first confirm if user is login or not or is he superuser:
@@ -35,7 +36,7 @@ def cartadd(request):
             response = JsonResponse({'qty': cart_quantity, 'product name': product.name})
             return response
     else:
-        messages.warning(request, "You need to be logged in to add items to your cart.")
+        messages.warning(request, "You need to be logged in to add items in your cart.")
         return JsonResponse({'error': 'User not authenticated'}, status=403)
 
 

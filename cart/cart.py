@@ -23,6 +23,22 @@ class Cart():
         # modify the session
         self.session.modified = True #saving session after modifying it
 
+    def cart_total_price(self): # total price of cart items
+        # get product id's
+        product_ids = self.cart.keys()  
+        # look these keys in our db model
+        products = Products.objects.filter(id__in = product_ids) 
+        # addition of items price:
+        quantities = self.cart
+        total = 0
+        for key, value in quantities.items():
+            # convert key() string into int
+            key = int(key)
+            for i in products:
+                if i.id == key:
+                    total = total + i.price 
+        return total  
+
     def __len__(self): # It filters to get the length of cart i.e total no of product present in cart and display it on cart logo navbar
         return len(self.cart)
     
