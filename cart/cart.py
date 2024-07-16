@@ -32,7 +32,7 @@ class Cart():
         quantities = self.cart
         total = 0
         for key, value in quantities.items():
-            # convert key() string into int
+            # convert key string into int
             key = int(key)
             for i in products:
                 if i.id == key:
