@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from products.models import Customer_profile
 
 # django-form is used to create new user in our User model in admin panel 
 class Register(UserCreationForm):
@@ -16,4 +17,13 @@ class Register(UserCreationForm):
         self.fields['username'].label = 'Username'
         self.fields['email'].label = 'Email'
         self.fields['password1'].label = 'Password'
-        self.fields['password2'].label = 'Confirm Password'
+        self.fields['password2'].label = 'Confirm Password' 
+
+# adding additional info in admin panel
+class Userinfo(forms.ModelForm): 
+    phone = forms.CharField(max_length=15, required=True)
+    address = forms.CharField(max_length=200, required=True)
+
+    class Meta:
+        model = Customer_profile
+        fields= ('phone', 'address')

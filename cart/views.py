@@ -14,7 +14,7 @@ def cart_summary(request):
 
 def cartadd(request):
     # first confirm if user is login or not or is he superuser:
-    if request.user.is_authenticated and request.user.is_superuser:    
+    if request.user.is_authenticated or request.user.is_superuser:    
         # get the product id and create session if not exist
         cart = Cart(request)
         # now get the actual data of product of this id into the session from database
