@@ -27,7 +27,7 @@ class Profileinline(admin.StackedInline):
 class Useradmin(admin.ModelAdmin):
     model = User  # we want to update User model & inside that we want to display:
     field = ['username','password','firstname','email']
-    inlines = [Profileinline] # to show everything else other than User model fields we use this 
+    inlines = [Profileinline] # to show everything other than User model fields we use this 
 
 #but before this new registration of fields in our User model's admin panel we need to unregister the old registration and carry out new registration
 admin.site.unregister(User)
