@@ -4,138 +4,110 @@
 <style>
     .container {
         background-color: #f8f9fa;
-        padding-top: 2%;
-        padding-bottom: 2%;
+        padding: 2% 0;
+        font-family: Arial, sans-serif;
     }
 
-    .adopt-dog-main-para {
-        font-size: 1.3rem;
-        font-weight: bold;
+    /* Centering the header */
+    .header-text {
         text-align: center;
-        margin: 0%;
-        padding: 0%;
-    }
-
-    .adopt-dog-para {
         font-size: 1.2rem;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    /* Style for the order details container */
+    .order-details-container {
         text-align: center;
-    }
-
-    .categories-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-bottom: 20px;
-    }
-
-    .card {
-        width: 30%;
-        margin-bottom: 20px;
-    }
-
-    .card-body {
-        text-align: center;
-    }
-
-    .card-img-top {
-        width: 100%;
-        height: auto;
-    }
-
-    .card-title {
-        font-size: 20px;
-    }
-
-    .card-text {
-        font-size: 16px;
-    }
-
-    /* Style for the container */
-    .categories-container-message {
-        text-align: center;
-        margin: 50px auto;
+        margin: 20px auto;
         padding: 20px;
         border: 1px solid #ccc;
-        max-width: 400px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* Style for the message content */
-    .message-content {
-        padding: 20px;
+    /* Style for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
     }
 
-    /* Style for the heading */
-    .message-content h2 {
-        color: #333;
-        font-size: 24px;
-        margin-bottom: 10px;
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
     }
 
-    /* Style for the paragraph */
-    .message-content p {
-        color: #666;
-        font-size: 16px;
-        margin-bottom: 20px;
+    th {
+        background-color: #f2f2f2;
     }
 
-    /* Style for the 'Continue Shopping' button */
-    .btn-shop-now {
+    /* Style for the 'Order Now' button */
+    .btn-order-now {
         display: inline-block;
-        padding: 10px 20px;
-        background-color: #4CAF50;
+        padding: 12px 24px;
+        background-color: #28a745;
         color: white;
         text-decoration: none;
         border-radius: 5px;
-        transition: background-color 0.3s;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: background-color 0.3s, transform 0.2s;
     }
 
-    .btn-shop-now:hover {
-        background-color: #a5ada6;
+    .btn-order-now:hover {
+        background-color: #218838;
+        transform: scale(1.05);
     }
 
     .cart-total {
-        text-align: left;
         font-size: 1.5rem;
         font-weight: bold;
-        margin: 10px 0;
+        margin: 20px 0;
         color: #333;
         background: #f0f0f0;
-        padding: 8px;
+        padding: 12px;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .update-shipping-info p{
+        text-align: center;
     }
 </style>
 
 <div class="container">
-    {% if cart_products %}
-    <p class="cart-total">Total Cart Amount: {{ total }} Rs
-    <p>
-        {% endif %}
-    <div class="categories-container">
-        {% if cart_products %}
-        <br>
-        {% for i in cart_products %}
-        <div class="card">
-            <img src="/media/{{ i.image }}" class="card-img-top" alt="Dog">
-            <div class="card-body">
-                <h3 class="card-title">{{ i.name }}</h3>
-                <p class="card-text">
-                    {{ i.price }}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
-                        <path
-                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
-                    </svg>
-                    <button class="btn btn-primary w-100" type="button">Place Order</button>
-                    <button class="btn btn-outline-danger w-100 mt-1 delete-product" type="button"
-                        data-index="{{i.id}}">Remove Order</button>
-                </p>
-            </div>
-        </div>
-        {% endfor %}
-        {% endif %}
+    <div class="order-details-container">
+        <h2>Order Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in cart_products %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.price }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2" class="cart-total">Total: {{ total }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="" class="btn-order-now">Order Now</a>
+    </div>
+    <div class="update-shipping-info">
+        <h5 class="header-text">Update your shipping address by clicking below</h5>
+        <p><a href="{% url 'user_info' %}" class="btn btn-outline-primary">Update Shipping Info</a></p>
+    </div>
+</div>
 
-        {% endblock content %}
+
+{% endblock content %}
