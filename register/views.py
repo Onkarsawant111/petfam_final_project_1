@@ -25,7 +25,7 @@ def register(request):
         form = Register()
         return render(request, 'register.html', {'form': form})
     
-def user_info(request):  # adding phone no and adress in our User model 
+def user_info(request):  # adding phone no and address in our User model 
     if request.user.is_authenticated:
         # Attempt to get the Customer_profile for the current user
         try:

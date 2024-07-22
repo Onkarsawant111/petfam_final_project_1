@@ -104,10 +104,10 @@
         <a href="" class="btn-order-now">Order Now</a>
     </div>
     <div class="update-shipping-info">
-        <h5 class="header-text">Update your shipping address by clicking below</h5>
-        <p><a href="{% url 'user_info' %}" class="btn btn-outline-primary">Update Shipping Info</a></p>
+        <h5 class="header-text">Update your shipping address below</h5>
+            {{ shipping_form.as_p }}
+            <button type="submit" class="btn btn-primary">Update Address</button>
     </div>
 </div>
-
 
 {% endblock content %}
