@@ -46,24 +46,6 @@
         background-color: #f2f2f2;
     }
 
-    /* Style for the 'Order Now' button */
-    .btn-order-now {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #28a745;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1rem;
-        margin-top: 20px;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .btn-order-now:hover {
-        background-color: #218838;
-        transform: scale(1.05);
-    }
-
     .cart-total {
         font-size: 1.5rem;
         font-weight: bold;
@@ -74,8 +56,48 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    .update-shipping-info p{
+
+    .update-shipping-info p {
         text-align: center;
+    }
+
+    /* styles.css or your custom stylesheet */
+
+    .shippingform {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .shippingform p {
+        margin-bottom: 10px;
+        /* Adjust spacing between form fields */
+    }
+
+    .shippingform label {
+        font-weight: bold;
+    }
+
+    .shippingform input[type="text"],
+    .shippingform input[type="email"],
+    .shippingform textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        /* Adjust spacing between input fields */
+    }
+
+    .shippingform .btn-primary {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 10px;
+        /* Adjust spacing between form fields and button */
     }
 </style>
 
@@ -101,12 +123,14 @@
                 </tr>
             </tbody>
         </table>
-        <a href="" class="btn-order-now">Order Now</a>
+        <a href="{% url 'cart_summary' %}" class="btn btn-outline-primary w-100 mt-3">Update Cart</a>
     </div>
-    <div class="update-shipping-info">
-        <h5 class="header-text">Update your shipping address below</h5>
-            {{ shipping_form.as_p }}
-            <button type="submit" class="btn btn-primary">Update Address</button>
+    <br>
+    <h5 class="header-text"><b>Update your shipping address below</b></h5>
+    <div class="shippingform">
+        <form action="" method="post"></form>
+        {{ shipping_form.as_p }}
+        <button type="submit" class="btn btn-primary w-100">Countinue to payment</button>
     </div>
 </div>
 

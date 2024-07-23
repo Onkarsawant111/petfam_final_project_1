@@ -26,3 +26,6 @@ def checkout(request):
         return render(request, 'checkout.html', {'cart_products': cart_products, 'total': total, 'shipping_form': shipping_form})
     else:
         return redirect('login')  # Redirect to login page if user is not authenticated
+
+def billing_process(request):
+    pass
