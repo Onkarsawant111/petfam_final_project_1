@@ -18,11 +18,3 @@ class Shippingform(forms.ModelForm):  # .ModelForm collects data in the model of
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        # Adding CSS classes to form fields
-        self.fields['name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['email'].widget.attrs.update({'class': 'form-control'})
-        self.fields['address'].widget.attrs.update({'class': 'form-control'})
-        self.fields['city'].widget.attrs.update({'class': 'form-control'})
-        self.fields['zipcode'].widget.attrs.update({'class': 'form-control'})
-        self.fields['state'].widget.attrs.update({'class': 'form-control'})
-        self.fields['country'].widget.attrs.update({'class': 'form-control'})
