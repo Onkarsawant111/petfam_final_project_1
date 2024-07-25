@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light p-3 mb-2 bg-secondary text-white bg-opacity-10">
-    <a class="navbar-brand mx-auto ps-5 ms-5" href="{% url 'home' %}"><img src="/static/pawfam_logo.png" alt="PawFam-logo"
-            style="height: 60px; width: 100px; border-radius: 10%;"></a>
+    <a class="navbar-brand mx-auto ps-5 ms-5" href="{% url 'home' %}"><img src="/static/pawfam_logo.png"
+            alt="PawFam-logo" style="height: 60px; width: 100px; border-radius: 10%;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,28 @@
             <li class="nav-item active pe-5">
                 <a class="nav-link btn light-grey-bg" href="{% url 'cart_summary' %}">
                     <i class="fa fa-shopping-cart me-1"></i>
-                    <span class="badge bg-secondary text-white ms-1 rounded-pill" id="cart_quantity">{{ cart | length }}</span> <!--Once product is added in cart session remove this zero, for that go to 'cart.py' -->
+                    <span class="badge bg-secondary text-white ms-1 rounded-pill" id="cart_quantity">
+                        {{ cart | length}}
+                    </span>
+                    <!--Once product is added in cart session remove this zero, for that go to 'cart.py' -->
                 </a>
             </li>
-            
+
+            {% if user.is_authenticated %}
+            <li class="nav-item pe-5">
+                <button class="nav-link fw-bolder" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Orders
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a href="{% url 'shipped_order' %}" class="dropdown-item " type="button"
+                        style="text-decoration: none;">Shipped Orders</a>
+                    <a href="{% url 'unshipped_order' %}" class="dropdown-item " type="button"
+                        style="text-decoration: none;">Unshipped Orders</a>
+                </div>
+            </li>
+            {% endif %}
+
             {% if user.is_authenticated %}
             <li class="nav-item pe-5">
                 <a class="nav-link fw-bolder" href="{% url 'user_logout' %}">Logout</a>
