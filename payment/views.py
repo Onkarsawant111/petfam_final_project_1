@@ -76,6 +76,11 @@ def process_order(request): # it is created to add shipping address to our model
                 price = product.price
                 create_order_item = Order_items(user=user, order_id=order_id, product_id=product_id, price=price)
                 create_order_item.save()
+        
+            #delete the cart after order placed
+            for key in list(request.session.keys()):
+                if key == 'session_key':  #from cart app in cart.py file 'session_key' present 
+                    del request.session[key]
 
             messages.success(request, 'Order placed successfully, Thank you!')
             return redirect('home')
