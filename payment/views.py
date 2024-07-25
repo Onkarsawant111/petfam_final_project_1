@@ -85,4 +85,7 @@ def process_order(request): # it is created to add shipping address to our model
             messages.success(request, 'Order placed successfully, Thank you!')
             return redirect('home')
 
+def shipped_order(request):
+    pass
+
 

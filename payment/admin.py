@@ -7,7 +7,7 @@ class ShippingAddress(admin.ModelAdmin):
 admin.site.register(Shipping_address, ShippingAddress)
 
 class Orders(admin.ModelAdmin):
-    list_display = ['id','name','email','address','amount_paid','date_ordered']
+    list_display = ['id','name','email','address','amount_paid','date_ordered','shipped']
 admin.site.register(Order, Orders)
 
 class Ordered_items(admin.ModelAdmin):
@@ -23,6 +23,8 @@ class Orderiteminline(admin.StackedInline):
 # extend our Order model
 class Orderadmin(admin.ModelAdmin):
     model = Order
+    list_display = ['id', 'name', 'email', 'address', 'amount_paid', 'date_ordered', 'shipped', 'date_shipped']
+    readonly_fields = ['date_ordered'] 
     inlines = [Orderiteminline]
 
 #unregister Order model
