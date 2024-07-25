@@ -3,6 +3,8 @@ from .models import Shipping_address
 from .forms import Shippingform
 from cart.cart import Cart
 from django.contrib import messages
+from payment.models import Order, Order_items
+from django.contrib.auth.models import User
 
 def checkout(request):
     cart = Cart(request)
@@ -44,8 +46,25 @@ def billing_info(request):
     
 def process_order(request): # it is created to add shipping address to our model 'Shipping_address' in admin panel
     if request.POST: 
-        my_shipping = request.session.get('my_shipping') # getting data from session created above
-        print(my_shipping)
+        cart = Cart(request)
+        total = cart.cart_total_price()
+        cart_products = cart.get_prods()
+
+        my_shipping = request.session.get('my_shipping') # getting data from above created session 
+
+        # gather shipping info to push it in our 'Order' model
+        name = my_shipping['name']
+        email = my_shipping['email']
+        #create shipping address from above session
+        shipping_address = f"{my_shipping['name']}\n{my_shipping['email']}\n{my_shipping['address']}\n{my_shipping['city']}\n{my_shipping['zipcode']}\n{my_shipping['state']}\n{my_shipping['country']}"
+        amount_paid = total  # to pass it in our 'Order' model
+
+        #create an order in 'Order' model
+        if request.user.is_authenticated:
+            user = request.user
+            create_order = Order(user=user, name=name, email=email, address=shipping_address, amount_paid=amount_paid)
+            create_order.save()
+
         messages.success(request, 'Order placed successfully, Thank you!')
         return redirect('home')
 
