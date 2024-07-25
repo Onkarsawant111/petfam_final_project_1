@@ -5,6 +5,7 @@ from cart.cart import Cart
 from django.contrib import messages
 from payment.models import Order, Order_items
 from django.contrib.auth.models import User
+from products.models import Products
 
 def checkout(request):
     cart = Cart(request)
@@ -65,7 +66,18 @@ def process_order(request): # it is created to add shipping address to our model
             create_order = Order(user=user, name=name, email=email, address=shipping_address, amount_paid=amount_paid)
             create_order.save()
 
-        messages.success(request, 'Order placed successfully, Thank you!')
-        return redirect('home')
+            # Now add order items in our 'Order_items' model
+            order_id = create_order.pk # it gets the primary key(id) of the 'Order' model
+            # get the info of products inside above Order 
+            for product in cart_products:  # form above Cart 
+                #get product id
+                product_id = product.id
+                #get product price
+                price = product.price
+                create_order_item = Order_items(user=user, order_id=order_id, product_id=product_id, price=price)
+                create_order_item.save()
+
+            messages.success(request, 'Order placed successfully, Thank you!')
+            return redirect('home')
 
 
