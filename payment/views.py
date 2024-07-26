@@ -88,7 +88,7 @@ def process_order(request): # it is created to add shipping address to our model
 def shipped_order(request):
     if request.user.is_authenticated:
         # we want to filter the Order model object coz we only want data of orders in which 'shipped=true(checked in Order model admin panel)'
-        order = Order.objects.filter(shipped=True) 
+        order = Order.objects.filter(user=request.user,shipped=True) 
         return render(request, 'shipped_order.html', {'order':order})
     else:
         messages.success(request, 'Access Denied')
@@ -96,8 +96,7 @@ def shipped_order(request):
 
 def unshipped_order(request):
     if request.user.is_authenticated:
-        # we want to filter the Order model object coz we only want data of orders in which 'shipped=true(checked in Order model admin panel)'
-        order = Order.objects.filter(shipped=False)
+        order = Order.objects.filter(user=request.user,shipped=False)
         # order_items = Order_items.objects.filter(shipped=False) 
         return render(request, 'unshipped_order.html', {'order':order})
     else:

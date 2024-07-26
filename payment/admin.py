@@ -20,7 +20,6 @@ class Amountpaidpic(admin.ModelAdmin):
 admin.site.register(AmountPaidPicture, Amountpaidpic)
 
 
-
 # making two models inline i.e. on same page in admin panel
 #Order & Order_items model together
 class Orderiteminline(admin.StackedInline):
