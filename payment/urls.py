@@ -8,4 +8,6 @@ urlpatterns = [
     path('process_order/', views.process_order, name='process_order'),
     path('shipped_order/', views.shipped_order, name='shipped_order'),
     path('unshipped_order/', views.unshipped_order, name='unshipped_order'),
+    path('order/<int:pk>', views.order, name='order'), # it is created for passing order details in our 'shipped_order.html' & 'unshipped_order.html' page
+    path('gpay/', views.gpay, name='gpay'),
 ]

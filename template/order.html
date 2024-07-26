@@ -22,7 +22,7 @@
         margin: 20px auto;
         padding: 20px;
         border: 1px solid #ccc;
-        max-width: 600px;
+        max-width: 700px;
         background-color: #ffffff;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -71,30 +71,25 @@
 
 <div class="container">
     <div class="order-details-container">
-        <h2>Unshipped Orders</h2>
+        <h2>Ordered Items</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Order Date</th>
-                    <th>Amount Paid</th>
-                    <th>Shipping Address</th>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
                 </tr>
             </thead>
             <tbody>
-                {% for i in order %}
+                {% for i in order_items %}
                 <tr>
-                    <td><a href="{% url 'order' i.id %}">{{ i.id }}</a></td>
-                    <td>{{ i.name }}</td>
-                    <td>{{ i.date_ordered }}</td>
-                    <td>{{ i.amount_paid }}</td>
-                    <td>{{ i.address }}</td>
-                    
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.product }}</td>
+                    <td>{{ i.price }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-</div>
+    </div>
 
     {% endblock content %}

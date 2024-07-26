@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Shipping_address
-from .forms import Shippingform
+from .forms import Shippingform, Amountpaidbyuserform
 from cart.cart import Cart
 from django.contrib import messages
-from payment.models import Order, Order_items
+from payment.models import Order, Order_items, gpay_scanner, AmountPaidPicture
 from django.contrib.auth.models import User
 from products.models import Products
 
@@ -104,5 +104,24 @@ def unshipped_order(request):
         messages.success(request, 'Access Denied')
         return redirect('home')
 
+def order(request, pk): 
+    if request.user.is_authenticated:
+        # get the order 
+        order = Order.objects.get(id=pk)
+        # get the order items 
+        order_items = Order_items.objects.filter(order=pk)
+        return render(request, 'order.html', {'order':order, 'order_items':order_items})
+    
+def gpay(request):
+    cart = Cart(request)
+    total = cart.cart_total_price()
+    scanner = gpay_scanner.objects.all()
 
+    if request.method == 'POST':
+        form = Amountpaidbyuserform(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    upload_img = Amountpaidbyuserform() # from 'forms.py'
+
+    return render(request, 'gpay.html', {'total': total, 'scanner':scanner, 'upload_img':upload_img})
 

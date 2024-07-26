@@ -53,3 +53,13 @@ class Order_items(models.Model): # it contains all the cart items in it
 
     def __str__(self):
         return f'Order-item - {str(self.id)}'
+
+class gpay_scanner(models.Model):
+    img = models.ImageField(upload_to='gpay_scanner')
+
+class AmountPaidPicture(models.Model): # it is created to get a SS of customer's paid amount via gpay scan but to get image from user we need to create 'forms.py' in which we will give access to user to upload images from frontend to backend
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    payment_image = models.ImageField(upload_to='amountpaid_img')
+    
+
+    

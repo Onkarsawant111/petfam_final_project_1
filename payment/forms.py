@@ -1,5 +1,5 @@
 from django import forms
-from .models import Shipping_address
+from .models import Shipping_address, AmountPaidPicture
 
 class Shippingform(forms.ModelForm):  # .ModelForm collects data in the model of database
     name = forms.CharField(max_length=250, required='', widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -17,4 +17,11 @@ class Shippingform(forms.ModelForm):  # .ModelForm collects data in the model of
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+class Amountpaidbyuserform(forms.ModelForm):
+    class Meta:
+        model = AmountPaidPicture
+        fields = ['payment_image']
+        labels = {'payment_image': ''}
+
         
