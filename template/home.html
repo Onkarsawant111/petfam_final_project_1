@@ -44,59 +44,62 @@
 <!-- end home slider -->
 
 <!-- categories section -->
-<div class="container" style="background-color: #f8f9fa;">
-    <h1 style="padding-top: 2%; padding-bottom: 2%;">Pet Categories</h1>
-    <div class="categories-container">
-        <div class="card">
-            <img src="/static/dog_categories.avif" class="card-img-top" alt="Dog">
-            <div class="card-body">
-                <h5 class="card-title">Dog</h5>
-                <p class="card-text">Order Products for your pet or Adopt one!</p>
-                <div class="card-button-div">
-                    <a href="{% url 'adopt-dog' %}" class="btn btn-outline-primary w-100" id="btn-primary-adopt">Adopt</a>
-                    <a href="{% url 'dog_products' %}" class="btn btn-outline-primary w-100 mt-1" id="btn-primary1">Products</a>
+<div class="container py-4" style="background-color: #f8f9fa;">
+    <h1 class="text-center mb-4">Pet Categories</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="/static/dog_categories.avif" class="card-img-top" alt="Dog">
+                <div class="card-body">
+                    <h5 class="card-title">Dog</h5>
+                    <p class="card-text">Order Products for your pet or Adopt one!</p>
+                    <div class="card-button-div">
+                        <a href="{% url 'adopt-dog' %}" class="btn btn-outline-primary w-100" id="btn-primary-adopt">Adopt</a>
+                        <a href="{% url 'dog_products' %}" class="btn btn-outline-primary w-100 mt-2" id="btn-primary1">Products</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <img src="/static/cat_categories.avif" class="card-img-top" alt="Cat">
-            <div class="card-body">
-                <h5 class="card-title">Cat</h5>
-                <p class="card-text">Order Products for your pet or Adopt one!</p>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="/static/cat_categories.avif" class="card-img-top" alt="Cat">
+                <div class="card-body">
+                    <h5 class="card-title">Cat</h5>
+                    <p class="card-text">Order Products for your pet or Adopt one!</p>
                     <div class="card-button-div">
                         <a href="{% url 'adopt-cat' %}" class="btn btn-outline-primary w-100" id="btn-primary-adopt">Adopt</a>
-                        <a href="{% url 'cat_products' %}" class="btn btn-outline-primary w-100 mt-1" id="btn-primary1">Products</a>
+                        <a href="{% url 'cat_products' %}" class="btn btn-outline-primary w-100 mt-2" id="btn-primary1">Products</a>
                     </div>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <img src="/static/birds_homebg.avif" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Birds</h5>
-                <p class="card-text">Order Products for your pet or Adopt one!</p>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="/static/birds_homebg.avif" class="card-img-top" alt="Birds">
+                <div class="card-body">
+                    <h5 class="card-title">Birds</h5>
+                    <p class="card-text">Order Products for your pet or Adopt one!</p>
                     <div class="card-button-div">
                         <a href="{% url 'adopt-bird' %}" class="btn btn-outline-primary w-100" id="btn-primary-adopt">Adopt</a>
-                        <a href="{% url 'bird_products' %}" class="btn btn-outline-primary w-100 mt-1" id="btn-primary1">Products</a>
+                        <a href="{% url 'bird_products' %}" class="btn btn-outline-primary w-100 mt-2" id="btn-primary1">Products</a>
                     </div>
-            </div>  
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="container" style="background-color: #f8f9fa;">
-    <div class="categories-container">
-        <div class="card">
-            <img src="/static/smallpets_homebg.avif" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Small Pets</h5>
-                <p class="card-text">Order Products for your pet or Adopt one!</p>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="/static/smallpets_homebg.avif" class="card-img-top" alt="Small Pets">
+                <div class="card-body">
+                    <h5 class="card-title">Small Pets</h5>
+                    <p class="card-text">Order Products for your pet or Adopt one!</p>
                     <div class="card-button-div">
                         <a href="{% url 'adopt-smallpet' %}" class="btn btn-outline-primary w-100" id="btn-primary-adopt">Adopt</a>
-                        <a href="{% url 'smallpet_products' %}" class="btn btn-outline-primary w-100 mt-1" id="btn-primary1">Products</a>
+                        <a href="{% url 'smallpet_products' %}" class="btn btn-outline-primary w-100 mt-2" id="btn-primary1">Products</a>
                     </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 {% endblock content %}
